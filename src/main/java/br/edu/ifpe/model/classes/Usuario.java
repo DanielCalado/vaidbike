@@ -24,7 +24,7 @@ SOFTWARE.
 package br.edu.ifpe.model.classes;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -60,7 +60,7 @@ public class Usuario implements Serializable {
     private String cpf;
     @Column(length = 5, nullable = true)
     private String sexo;
-    private LocalDate dataNasc;
+    private Date dataNasc;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cod_endereco", nullable = false)
     private Endereco endereco;
@@ -74,13 +74,13 @@ public class Usuario implements Serializable {
             fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Bike> bikes;
 
-    @Deprecated
+    
     public Usuario() {
 
     }
 
     public Usuario(String login, String senha, String nome, String cpf,
-            String sexo, LocalDate dataNasc, Endereco endereco, String telefone,
+            String sexo, Date dataNasc, Endereco endereco, String telefone,
             String email, List<Bike> bikes) {
         this.login = login;
         this.senha = senha;
@@ -110,6 +110,18 @@ public class Usuario implements Serializable {
         return senha;
     }
 
+    public void setDataNasc(Date dataNasc) {
+        this.dataNasc = dataNasc;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public void setSenha(String senha) {
         this.senha = senha;
     }
@@ -134,7 +146,7 @@ public class Usuario implements Serializable {
         this.sexo = sexo;
     }
 
-    public LocalDate getDataNasc() {
+    public Date getDataNasc() {
         return dataNasc;
     }
 

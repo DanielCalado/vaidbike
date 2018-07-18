@@ -52,7 +52,6 @@ public class Endereco implements Serializable {
     @Column(length = 25, nullable = false)
     private String logradouro;
 
-    @Deprecated
     public Endereco() {
     }
 
@@ -87,6 +86,30 @@ public class Endereco implements Serializable {
 
     public String getLogradouro() {
         return logradouro;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
     @Override

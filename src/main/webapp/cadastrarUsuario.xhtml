@@ -11,7 +11,7 @@
     <h:body>
         <p:fieldset legend="Cadastro de Usuário">
 
-            <h:form>
+            <h:form id = "form">
                 <p:dialog id="dialUsuario" visible="true" resizable="false" modal="true"
                           widgetVar="widDialUsuario" header="Cadastro do Usuário">
                     <p:tab>
@@ -19,19 +19,18 @@
 
 
                             <h:outputText value="Nome Completo*:" />
-                            <p:inputText value="#{UsuarioController.cadUsuario.nome}" required="true" label="Firstname"/>
+                            <p:inputText value="#{usuarioController.cadUsuario.nome}" required="true" label="Firstname"/>
 
                             <h:outputText value="CPF*:"/>
-                            <p:inputMask id="txtCPF" value="#{UsuarioController.cadUsuario.cpf}" mask="999.999.999-99" required="true"
+                            <p:inputMask id="txtCPF" value="#{usuarioController.cadUsuario.cpf}" mask="999.999.999-99" required="true"
                                          requiredMessage="Informe O CPF"/>
 
                             <h:outputText value="Data de Nascimento*:"/>
-                            <p:inputMask id="txtdate" value="#{UsuarioController.cadUsuario.dataNasc}" mask="99/99/9999" required="true"
-                                         requiredMessage="Campo Obrigatório!"/>
+                            <p:calendar value="#{usuarioController.cadUsuario.dataNasc}" pattern="dd/MM/yyyy" mask="true" size="10" requiredMessage="Campo Obrigatório!"/>
 
 
                             <h:outputText value="Sexo*:"/>
-                            <p:selectOneMenu id="txtSexo" value="#{UsuarioController.cadUsuario.sexo}" required="true" 
+                            <p:selectOneMenu id="txtSexo" value="#{usuarioController.cadUsuario.sexo}" required="true" 
                                              requiredMessage="Favor informar o sexo">
                                 <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
                                 <f:selectItem itemValue="Feminino" itemLabel="Feminino"/>
@@ -51,19 +50,19 @@
                         <h:panelGrid columns="2" columnClasses="label, value">
 
                             <h:outputText value="Logradouro: *" />
-                            <p:inputText value="#{UsuarioController.cadUsuario.endereco.logradouro}" />
+                            <p:inputText value="#{usuarioController.end.logradouro}" />
 
                             <h:outputText value="Bairro: *" />
-                            <p:inputText value="#{UsuarioController.cadUsuario.endereco.bairro}" />
+                            <p:inputText value="#{usuarioController.end.bairro}" />
 
                             <h:outputText value="Cidade: *" />
-                            <p:inputText value="#{UsuarioController.cadUsuario.endereco.cidade}" />
+                            <p:inputText value="#{usuarioController.end.cidade}" />
 
                             <h:outputText value="CEP: *" />
-                            <p:inputText value="#{UsuarioController.cadUsuario.endereco.cep}" />
+                            <p:inputText value="#{usuarioController.end.cep}" />
 
                             <h:outputText value="Estado(UF): *" />
-                            <p:selectOneMenu id="txtEstado" value="#{UsuarioController.cadUsuario.endereco.estado}" required="true" 
+                            <p:selectOneMenu id="txtEstado" value="#{usuarioController.end.estado}" required="true" 
                                              requiredMessage="Favor informar o sexo">
                                 <f:selectItem itemLabel="Escolha"/>
                                 <f:selectItem itemValue="ac" itemLabel="Acre-AC"/>
@@ -96,7 +95,7 @@
                         <p:commandButton value="Voltar" 
                                          oncomplete="PF('widDialUsuario').show()" onclick="PF('widDialEndereco').hide()"/>
                         <p:commandButton value="Avançar" 
-                                         oncomplete="PF('widDialContato').show()" onclick="PF('widDialEndereco').hide()"/>
+                                         oncomplete="PF('widDialContato').show()" onclick="PF('widDialEndereco').hide()" />
                         
                     </p:tab> 
                 </p:dialog>
@@ -112,22 +111,22 @@
                         <h:panelGrid columns="2" columnClasses="label, value">
 
                             <h:outputText value="Telefone: " />
-                            <p:inputText value="#{UsuarioController.cadUsuario.telefone}"/>
+                            <p:inputText value="#{usuarioController.cadUsuario.telefone}"/>
 
                             <h:outputText value="Email: *" />
-                            <p:inputText value="#{UsuarioController.cadUsuario.email }" required="true" label="Email"/>
+                            <p:inputText value="#{usuarioController.cadUsuario.email }" required="true" label="Email"/>
 
                             <h:outputText value="Login: " />
-                            <p:inputText value="#{UsuarioController.cadUsuario.login}"/>
+                            <p:inputText value="#{usuarioController.cadUsuario.login}"/>
 
                             <h:outputText value="Senha: " />
-                            <p:inputText value="#{UsuarioController.cadUsuario.senha}"/>
+                            <p:inputText value="#{usuarioController.cadUsuario.senha}"/>
                         </h:panelGrid>
 
                         <p:commandButton value="Voltar" 
                                          oncomplete="PF('widDialEndereco').show()" onclick="PF('widDialContato').hide()"/>
                         <p:commandButton value="Confirmar" 
-                                         oncomplete="PF('widDialConfirmar').show()" onclick="PF('widDialContato').hide()"/>
+                                         oncomplete="PF('widDialConfirmar').show()" onclick="PF('widDialContato').hide()" update="@form"/>
                     </p:tab>
                 </p:dialog>
             </h:form>
@@ -137,51 +136,47 @@
                           widgetVar="widDialConfirmar" header="Confere Aí!">
                     <p:tab>
 
-                            <h:panelGrid columns="2" columnClasses="label, value">
+                            <p:panelGrid columns="2" columnClasses="label, value">
                                 <h:outputText value="Nome Completo " />
-                                <h:outputText value="#{UsuarioController.cadUsuario.nome}" styleClass="outputLabel"/>
+                                <h:outputText value="#{usuarioController.cadUsuario.nome}" styleClass="outputLabel"/>
 
                                 <h:outputText value="CPF: " />
-                                <h:outputText value="#{UsuarioController.cadUsuario.cpf}" styleClass="outputLabel"/>
+                                <h:outputText value="#{usuarioController.cadUsuario.cpf}" styleClass="outputLabel"/>
 
                                 <h:outputText value="Data de Nascimento: " />
-                                <h:outputText value="#{UsuarioController.cadUsuario.dataNasc}" styleClass="outputLabel"/>
+                                <h:outputText value="#{usuarioController.cadUsuario.dataNasc}" styleClass="outputLabel"/>
                                 
                                 <h:outputText value="Sexo: " />
-                                <h:outputText value="#{UsuarioController.cadUsuario.sexo}" styleClass="outputLabel"/>
-                            </h:panelGrid>
+                                <h:outputText value="#{usuarioController.cadUsuario.sexo}" styleClass="outputLabel"/>
 
-                            <h:panelGrid columns="2" columnClasses="label, value">
                                 <h:outputText value="Logradouro: " />
-                                <h:outputText value="#{UsuarioController.cadUsuario.endereco.logradouro}" styleClass="outputLabel"/>
+                                <h:outputText value="#{usuarioController.end.logradouro}" styleClass="outputLabel"/>
 
                                 <h:outputText value="Bairro: " />
-                                <h:outputText value="#{UsuarioController.cadUsuario.endereco.bairro}" styleClass="outputLabel"/>
+                                <h:outputText value="#{usuarioController.end.bairro}" styleClass="outputLabel"/>
 
                                 <h:outputText value="Cidade: " />
-                                <h:outputText value="#{UsuarioController.cadUsuario.endereco.cidade}" styleClass="outputLabel"/>
+                                <h:outputText value="#{usuarioController.end.cidade}" styleClass="outputLabel"/>
                                 
                                 <h:outputText value="CEP: " />
-                                <h:outputText value="#{UsuarioController.cadUsuario.endereco.cep}" styleClass="outputLabel"/>
+                                <h:outputText value="#{usuarioController.end.cep}" styleClass="outputLabel"/>
                                 
                                 <h:outputText value="Estado: " />
-                                <h:outputText value="#{UsuarioController.cadUsuario.endereco.estado}" styleClass="outputLabel"/>
-                            </h:panelGrid>
+                                <h:outputText value="#{usuarioController.end.estado}" styleClass="outputLabel"/>
 
-                            <h:panelGrid columns="2" columnClasses="label, value">
                                 
                                 <h:outputText value="Telefone: " />
-                                <h:outputText value="#{UsuarioController.cadUsuario.telefone}" styleClass="outputLabel"/>
+                                <h:outputText value="#{usuarioController.cadUsuario.telefone}" styleClass="outputLabel"/>
 
                                 <h:outputText value="Email: " />
-                                <h:outputText value="#{UsuarioController.cadUsuario.email}" styleClass="outputLabel"/>
+                                <h:outputText value="#{usuarioController.cadUsuario.email}" styleClass="outputLabel"/>
 
                                 <h:outputText value="Senha: " />
-                                <h:outputText value="#{UsuarioController.cadUsuario.senha}" styleClass="outputLabel"/>
+                                <h:outputText value="#{usuarioController.cadUsuario.senha}" styleClass="outputLabel"/>
                              
-                            </h:panelGrid>
+                            </p:panelGrid>
                         
-                          <p:commandButton value="Cadastrar Usuario" action="#{pilotoController.cadastrar(motoController.cadMoto)}"
+                          <p:commandButton value="Cadastrar Usuario" 
                                     onclick="PF('widDialConfirmar').hide()"/>
                         
                     </p:tab>
